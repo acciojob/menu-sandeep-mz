@@ -18,14 +18,14 @@ const App = () => {
   };
 
   return (
-    <div className="App" id="main"> {/* Added ID #main */}
-      <h1>Delicious Dishes</h1>
+    <div className="App" data-test-id="main"> {/* Added data-test-id */}
+      <h1 data-test-id="page-title">Delicious Dishes</h1> {/* Added data-test-id */}
       <div className="categories">
         {categories.map((category, index) => (
           <button
             key={index}
             onClick={() => handleCategoryChange(category)}
-            id={`filter-btn-${index + 1}`} // Dynamic ID for buttons #filter-btn-1, #filter-btn-2, etc.
+            data-test-id={`menu-item-${category.toLowerCase()}`} // Added data-test-id
           >
             {category}
           </button>
@@ -33,7 +33,7 @@ const App = () => {
       </div>
       <div className="dishes">
         {filteredDishes.map((dish) => (
-          <div key={dish.id} className="dish">
+          <div key={dish.id} className="dish" data-test-id={`menu-item-${dish.title.toLowerCase()}`}>
             <img src={dish.img} alt={dish.title} />
             <h2>{dish.title}</h2>
             <p>{dish.desc}</p>

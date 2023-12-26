@@ -1,7 +1,7 @@
 // App.js
 import React, { useState } from 'react';
-import '../styles/App.css'; // Correct the path to your CSS file
-import { dishes } from './data'; // Correct the path to your data file
+import '../styles/App.css'; // Adjust the path to your CSS file
+import { dishes } from './data'; // Adjust the path to your data file
 
 const App = () => {
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -13,12 +13,20 @@ const App = () => {
       ? dishes
       : dishes.filter((dish) => dish.category === selectedCategory);
 
+  const handleCategoryChange = (category) => {
+    setSelectedCategory(category);
+  };
+
   return (
-    <div className="App">
+    <div className="App" id="main"> {/* Added ID #main */}
       <h1>Delicious Dishes</h1>
       <div className="categories">
         {categories.map((category, index) => (
-          <button key={index} onClick={() => setSelectedCategory(category)}>
+          <button
+            key={index}
+            onClick={() => handleCategoryChange(category)}
+            id={`filter-btn-${index + 1}`} // Dynamic ID for buttons #filter-btn-1, #filter-btn-2, etc.
+          >
             {category}
           </button>
         ))}
